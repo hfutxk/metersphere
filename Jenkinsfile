@@ -9,17 +9,6 @@ pipeline {
         string(name: 'IMAGE_FREFIX', defaultValue: 'metersphere', description: '构建后的 Docker 镜像带仓库名的前缀')
     }
     stages {
-        stage('Chcekout') {
-            steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: scm.branches,
-                    doGenerateSubmoduleConfigurations: true,
-                    extensions: scm.extensions + [[$class: 'SubmoduleOption', parentCredentials: true]],
-                    userRemoteConfigs: scm.userRemoteConfigs
-                ])
-            }
-        }
         stage('Build/Test') {
             steps {
                 configFileProvider([configFile(fileId: 'metersphere-maven', targetLocation: 'settings.xml')]) {
