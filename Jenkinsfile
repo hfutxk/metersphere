@@ -13,7 +13,7 @@ pipeline {
         stage('Build/Test') {
             steps {
                 configFileProvider([configFile(fileId: 'metersphere-maven', targetLocation: 'settings.xml')]) {
-                    sh "mvn clean package --settings ./settings.xml"
+                    sh "mvn clean package --settings  ./settings.xml"
                 }
             }
         }
